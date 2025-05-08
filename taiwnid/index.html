@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat com IA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-screen overflow-hidden">
+
+  <div class="flex h-full">
+    <!-- Sidebar esquerda (Histórico) -->
+    <div id="sidebar" class="w-64 bg-blue-800 text-white transition-all duration-300 overflow-auto">
+      <div class="p-4 font-bold text-xl">Histórico</div>
+      <ul id="historyList" class="px-4 space-y-2">
+        <!-- Mensagens -->
+      </ul>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="flex-1 flex items-center justify-center relative bg-gradient-to-br from-white to-gray-200">
+      <!-- Botão de abrir/fechar histórico -->
+      <button
+        onclick="toggleSidebar()"
+        class="absolute top-4 left-4 bg-blue-800 text-white px-3 py-1 rounded hover:bg-blue-700 transition"
+      >
+        Abrir/Fechar Histórico
+      </button>
+
+      <div class="text-center max-w-xl px-4">
+        <h1 class="text-2xl font-bold">
+          ⚡ Experimente o poder da <br />
+          <span class="text-blue-600">Inteligência Artificial Na EFICAZ</span>
+        </h1>
+
+        <div class="mt-6 flex items-center space-x-2">
+          <input
+            id="inputMessage"
+            type="text"
+            placeholder='Envie uma mensagem ou digite "/" para exibir'
+            class="flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none"
+          />
+          <button
+            onclick="sendMessage()"
+            class="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-700"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Perfil lateral direita -->
+    <div class="w-64 bg-white border-l border-gray-300 p-4 flex flex-col items-center text-center">
+      <img
+        src="https://i.pravatar.cc/100?img=3"
+        alt="Foto do Usuário"
+        class="w-24 h-24 rounded-full shadow mb-4"
+      />
+      <h2 class="text-xl font-semibold">Usuário Exemplo</h2>
+      <p class="text-gray-600 mb-4">usuario@email.com</p>
+      <button
+        class="mt-auto px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        onclick="alert('Logout simulado!')"
+      >
+        Sair
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('w-64');
+      sidebar.classList.toggle('w-0');
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('inputMessage');
+      const historyList = document.getElementById('historyList');
+      const text = input.value.trim();
+
+      if (text !== '') {
+        const li = document.createElement('li');
+        li.textContent = text;
+        li.className = "bg-blue-700 p-2 rounded";
+        historyList.appendChild(li);
+        input.value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
+
